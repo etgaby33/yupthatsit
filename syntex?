@@ -1654,7 +1654,7 @@ local script = G2L["24"];
 				isFound = true 
 				Cody.Text = '-- Backdoor Found !'
 				ScanButton.Interactable = false
-				script.Parent.Parent.Ring.Frame.Injected.Text = "Statut : Injected!"
+				script.Parent.Parent.Ring.Frame.Injected.Text = "Statut : Injected"
 				ScanButton.Text = "Already Injected"
 				StarterGui:SetCore("SendNotification", {
 					Title = "Backdoor Found!",
