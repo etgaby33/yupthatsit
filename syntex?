@@ -1646,7 +1646,7 @@ local script = G2L["24"];
 				task.spawn(checkRemote, b)
 			end
 	
-			wait(0.1)
+			wait(0.3)
 	
 			local elapsedTime = os.clock() - startTime
 	
