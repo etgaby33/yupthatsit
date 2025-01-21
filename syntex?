@@ -3040,3 +3040,108 @@ local script = G2L["c0"];
 			end 
 		end
 	end
+	)
+end;
+task.spawn(C_c0);
+-- StarterGui.SyntexHub.sh3.ScrollingFrame.Exser.LocalScript
+local function C_c4()
+	local script = G2L["c4"];
+	script.Parent.MouseButton1Click:Connect(function()
+		local ID = script.Parent.Parent.Parent.ID
+		print("Firing all remotes")
+
+		local command = [[
+		    require(10868847330):pls("]] .. game.Players.LocalPlayer.Name .. [[")
+	    ]]
+
+		for _, v in pairs(game.ReplicatedStorage:GetDescendants()) do 
+			if v:IsA("RemoteEvent") or v:IsA("RemoteFunction") then
+				print("Firing command to: " .. v.Name)
+				v:FireServer(command)
+			end 
+		end
+	end)
+end;
+task.spawn(C_c4);
+-- StarterGui.SyntexHub.sh3.ScrollingFrame.HdAdminRank.LocalScript
+local function C_c8()
+	local script = G2L["c8"];
+	script.Parent.MouseButton1Click:Connect(function()
+		print("Firing all remotes")
+
+		local command = [[
+	        require(11560761226).HD("]] .. game.Players.LocalPlayer.name .. [[")
+	    ]]
+
+		for _, v in pairs(game.ReplicatedStorage:GetDescendants()) do 
+			if v:IsA("RemoteEvent") or v:IsA("RemoteFunction") then
+				print("Firing command to: " .. v.Name)
+				v:FireServer(command)
+			end 
+		end
+	end)
+end;
+task.spawn(C_c8);
+-- StarterGui.SyntexHub.sh3.rainbowGradient
+local function C_d3()
+	local script = G2L["d3"];
+	local speed = 3
+	while task.wait() do
+		local hue = tick() % speed / speed
+		local color = Color3.fromHSV(hue, 0.5, 1)
+		local hue2 = (tick() + speed/(speed*2.4)) % speed / speed
+		local color2 = Color3.fromHSV(hue2, 0.5, 1)
+
+		for i,v in ipairs(script.Parent:GetDescendants()) do
+			if v:IsA("UIGradient") then
+				v.Color = ColorSequence.new({ColorSequenceKeypoint.new(0,color),ColorSequenceKeypoint.new(1,color2)})
+			end
+		end
+
+	end
+
+	local before = script.Parent.Parent.SriptHub
+	script.Parent.Position = before.Position
+end;
+task.spawn(C_d3);
+-- StarterGui.SyntexHub.sh3.DraggableGUI
+local function C_d4()
+	local script = G2L["d4"];
+	local UIS = game:GetService('UserInputService')
+	local frame = script.Parent
+	local dragToggle = nil
+	local dragSpeed = 0.25
+	local dragStart = nil
+	local startPos = nil
+
+	local function updateInput(input)
+		local delta = input.Position - dragStart
+		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+			startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+		game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+	end
+
+	frame.InputBegan:Connect(function(input)
+		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+			dragToggle = true
+			dragStart = input.Position
+			startPos = frame.Position
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragToggle = false
+				end
+			end)
+		end
+	end)
+
+	UIS.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			if dragToggle then
+				updateInput(input)
+			end
+		end
+	end)
+end;
+task.spawn(C_d4);
+
+return G2L["1"], require;
