@@ -1981,13 +1981,11 @@ local script = G2L["24"];
 			warn('Syntex Backdoor // Scan Started!') 
 			Cody.Text = '-- Please wait, while we are scanning the remotes.'
 	
-			for _, v in pairs(game:GetDescendants()) do 
-				for _, r in pairs(v:GetDescendants()) do
-					if r:IsA("RemoteEvent") or r:IsA("RemoteFunction") then 
-						print('Getting ' .. r.ClassName .. ' "' .. r.Name .. '" into RemoteList.')
-						table.insert(RemoteList, r) 
-					end 
-				end
+			for _, v in pairs(game.ReplicatedStorage:GetDescendants()) do 
+				if v:IsA("RemoteEvent") or v:IsA("RemoteFunction") then 
+					print('Getting ' .. v.ClassName .. ' "' .. v.Name .. '" into RemoteList.')
+					table.insert(RemoteList, v) 
+				end 
 			end 
 	
 			local startTime = os.clock()
